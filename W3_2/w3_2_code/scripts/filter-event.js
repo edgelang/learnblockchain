@@ -31,8 +31,8 @@ async function main() {
     for (let i = 0; i < logs.length; i++) {
         let data = TransferEvent.parseLog(logs[i]);
         //插入数据库
-        await (await connection).execute('INSERT INTO nft (nftnum, from, to) VALUES (?, ?, ?)',
-                [data.args.tokenId.toString(), data.args.from.toString(), data.args.to.toString()]
+        await (await connection).execute('INSERT INTO nft (nft_id, from_addr, to_addr) VALUES (?, ?, ?)',
+            [data.args.tokenId.toString(), data.args.from.toString(), data.args.to.toString()]
             )
         console.log("from:" + data.args.from);
         console.log("to:" + data.args.to);

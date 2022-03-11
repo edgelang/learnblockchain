@@ -12,4 +12,5 @@ https://testnet.bscscan.com/tx/0x4626fa723a9983b9fab7973dc6b4c53f673d4577839ac23
 [filter-event.js](./w3_2_code/scripts/filter-event.js)
 
 ![img](../img/W3_2_1.jpg)
+![img](../img/W3_2_2.jpg)
 
