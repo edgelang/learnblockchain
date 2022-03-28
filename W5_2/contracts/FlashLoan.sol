@@ -69,10 +69,10 @@ contract FlashLoan is FlashLoanSimpleReceiverBase {
         uint256 amount1Out = AtokenAddress == token1 ? amount : 0;
         //V2兑换
         IERC20(AtokenAddress).approve(v2Router, amount);
-        uint256 amountB  = IV2SwapRouter(v2Router).swapExactTokensForTokens(amountIn, 0, path, address(this), block.timestamp);
+        uint256[] amounts  = IV2SwapRouter(v2Router).swapExactTokensForTokens(amountIn, 0, path, address(this), block.timestamp);
 
         //V3兑换
-        IERC20(AtokenAddress).approve(v3Router, amount);
+        IERC20(AtokenAddress).approve(v3Router, amounts[1]);
 
         uint256 amountA = IV3SwapRouter(v3Router).exactInput{
         value: 0
@@ -85,7 +85,7 @@ contract FlashLoan is FlashLoanSimpleReceiverBase {
             ),
         recipient: address(this),
         deadline: block.timestamp,
-        amountIn: amountB,
+        amountIn: amounts[1],
         amountOutMinimum: 0
         })
         );
