@@ -2,12 +2,12 @@
 pragma solidity 0.8.10;
 
 import {IPoolAddressesProvider} from './IPoolAddressesProvider.sol';
-import {DataTypes} from '../protocol/libraries/types/DataTypes.sol';
+import {DataTypes} from './DataTypes.sol';
 
 /**
  * @title IPool
  * @author Aave
- * @notice Defines the basic interface for an Aave Pool.
+ * @notice Defines the basic interfaces for an Aave Pool.
  **/
 interface IPool {
   /**
@@ -434,7 +434,7 @@ interface IPool {
    * as long as the amount taken plus a fee is returned.
    * @dev IMPORTANT There are security concerns for developers of flashloan receiver contracts that must be kept
    * into consideration. For further details please visit https://developers.aave.com
-   * @param receiverAddress The address of the contract receiving the funds, implementing IFlashLoanReceiver interface
+   * @param receiverAddress The address of the contract receiving the funds, implementing IFlashLoanReceiver interfaces
    * @param assets The addresses of the assets being flash-borrowed
    * @param amounts The amounts of the assets being flash-borrowed
    * @param interestRateModes Types of the debt to open if the flash loan is not returned:
@@ -461,7 +461,7 @@ interface IPool {
    * as long as the amount taken plus a fee is returned.
    * @dev IMPORTANT There are security concerns for developers of flashloan receiver contracts that must be kept
    * into consideration. For further details please visit https://developers.aave.com
-   * @param receiverAddress The address of the contract receiving the funds, implementing IFlashLoanSimpleReceiver interface
+   * @param receiverAddress The address of the contract receiving the funds, implementing IFlashLoanSimpleReceiver interfaces
    * @param asset The address of the asset being flash-borrowed
    * @param amount The amount of the asset being flash-borrowed
    * @param params Variadic packed params to pass to the receiver as extra information
@@ -487,16 +487,16 @@ interface IPool {
    * @return healthFactor The current health factor of the user
    **/
   function getUserAccountData(address user)
-    external
-    view
-    returns (
-      uint256 totalCollateralBase,
-      uint256 totalDebtBase,
-      uint256 availableBorrowsBase,
-      uint256 currentLiquidationThreshold,
-      uint256 ltv,
-      uint256 healthFactor
-    );
+  external
+  view
+  returns (
+    uint256 totalCollateralBase,
+    uint256 totalDebtBase,
+    uint256 availableBorrowsBase,
+    uint256 currentLiquidationThreshold,
+    uint256 ltv,
+    uint256 healthFactor
+  );
 
   /**
    * @notice Initializes a reserve, activating it, assigning an aToken and debt tokens and an
@@ -530,7 +530,7 @@ interface IPool {
    * @param rateStrategyAddress The address of the interest rate strategy contract
    **/
   function setReserveInterestRateStrategyAddress(address asset, address rateStrategyAddress)
-    external;
+  external;
 
   /**
    * @notice Sets the configuration bitmap of the reserve as a whole
@@ -539,7 +539,7 @@ interface IPool {
    * @param configuration The new configuration bitmap
    **/
   function setConfiguration(address asset, DataTypes.ReserveConfigurationMap calldata configuration)
-    external;
+  external;
 
   /**
    * @notice Returns the configuration of the reserve
@@ -547,9 +547,9 @@ interface IPool {
    * @return The configuration of the reserve
    **/
   function getConfiguration(address asset)
-    external
-    view
-    returns (DataTypes.ReserveConfigurationMap memory);
+  external
+  view
+  returns (DataTypes.ReserveConfigurationMap memory);
 
   /**
    * @notice Returns the configuration of the user across all the reserves
@@ -557,9 +557,9 @@ interface IPool {
    * @return The configuration of the user
    **/
   function getUserConfiguration(address user)
-    external
-    view
-    returns (DataTypes.UserConfigurationMap memory);
+  external
+  view
+  returns (DataTypes.UserConfigurationMap memory);
 
   /**
    * @notice Returns the normalized income normalized income of the reserve

@@ -4,7 +4,7 @@ pragma solidity 0.8.10;
 /**
  * @title IPoolAddressesProvider
  * @author Aave
- * @notice Defines the basic interface for a Pool Addresses Provider.
+ * @notice Defines the basic interfaces for a Pool Addresses Provider.
  **/
 interface IPoolAddressesProvider {
   /**
